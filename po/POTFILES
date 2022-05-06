@@ -1,0 +1,7 @@
+data/com.dpsoftware.gaussian.desktop.in
+data/com.dpsoftware.gaussian.appdata.xml.in
+data/com.dpsoftware.gaussian.gschema.xml
+src/window.ui
+src/main.py
+src/window.py
+

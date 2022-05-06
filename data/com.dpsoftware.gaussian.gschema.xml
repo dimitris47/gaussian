@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gaussian">
+	<schema id="com.dpsoftware.gaussian" path="/com/dpsoftware/gaussian/">
+	  <key name="mean" type="i">
+      <default>100</default>
+	  </key>
+	  <key name="dev" type="i">
+      <default>15</default>
+	  </key>
+	</schema>
+</schemalist>
