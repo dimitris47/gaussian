@@ -182,7 +182,7 @@ class AboutDialog(Gtk.AboutDialog):
     def __init__(self, parent):
         Gtk.AboutDialog.__init__(self)
         self.props.program_name = 'Gaussian'
-        self.props.version = "0.1.0"
+        self.props.version = "1.0"
         self.props.authors = ['Dimitris Psathas']
         self.props.website_label = 'https://github.com/dimitris47/gaussian'
         self.props.copyright = '2022 Dimitris Psathas'

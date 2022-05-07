@@ -3,5 +3,6 @@
   <gresource prefix="/com/dpsoftware/gaussian">
     <file>window.ui</file>
     <file>gtk/help-overlay.ui</file>
+    <file>../data/icons/com.dpsoftware.gaussian.png</file>
   </gresource>
 </gresources>
