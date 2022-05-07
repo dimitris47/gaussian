@@ -106,7 +106,7 @@ class GaussianWindow(Gtk.ApplicationWindow):
         for _ in range(12):
             self.grid.remove_row(4)
 
-        z1 = (0 - mean) / dev
+        z1 = (mean - score) / dev
         z2 = (score - mean) / dev
 
         x = np.arange(z1, z2, 0.001)
