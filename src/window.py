@@ -50,9 +50,13 @@ class GaussianWindow(Gtk.ApplicationWindow):
         self.save_btn.connect('clicked', self.save_image)
 
         self.mean_entry.connect('activate', self.calculation)
+        self.mean_entry.connect('changed', self.validate)
         self.dev_entry.connect('activate', self.calculation)
+        self.dev_entry.connect('changed', self.validate)
         self.score_entry.connect('activate', self.calculation)
+        self.score_entry.connect('changed', self.validate)
         self.prob_entry.connect('activate', self.calculation)
+        self.prob_entry.connect('changed', self.validate)
 
         settings = Gio.Settings.new("com.dpsoftware.gaussian")
         self.mean_entry.set_text(str(settings.get_int("mean")))
@@ -63,6 +67,14 @@ class GaussianWindow(Gtk.ApplicationWindow):
         self.filename = ''
 
         self.set_default_size(480, 224)
+
+    def validate(self, widget):
+        text = widget.get_text()
+        try:
+            num = float(text)
+        except ValueError:
+            new_num = text[:len(text)-1]
+            widget.set_text(new_num)
 
     def calculation(self, widget):
         if self.mean_entry.get_text_length != 0 and self.dev_entry.get_text_length != 0:
