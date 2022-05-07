@@ -176,7 +176,6 @@ class GaussianWindow(Gtk.ApplicationWindow):
         dialog.connect('response', lambda self, dialog: self.destroy())
 
 
-
 class AboutDialog(Gtk.AboutDialog):
 
     def __init__(self, parent):
@@ -189,3 +188,4 @@ class AboutDialog(Gtk.AboutDialog):
         self.props.logo_icon_name = 'com.dpsoftware.gaussian'
         self.props.modal = True
         self.set_transient_for(parent)
+
