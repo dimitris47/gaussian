@@ -70,11 +70,12 @@ class GaussianWindow(Gtk.ApplicationWindow):
 
     def validate(self, widget):
         text = widget.get_text()
-        try:
-            num = float(text)
-        except ValueError:
-            new_num = text[:len(text)-1]
-            widget.set_text(new_num)
+        if len(text):
+            try:
+                num = float(text)
+            except ValueError:
+                new_num = text[:len(text)-1]
+                widget.set_text(new_num)
 
     def calculation(self, widget):
         if self.mean_entry.get_text_length != 0 and self.dev_entry.get_text_length != 0:
