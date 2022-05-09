@@ -78,29 +78,26 @@ class GaussianWindow(Gtk.ApplicationWindow):
                 widget.set_text(new_num)
 
     def calculation(self, widget):
-        if self.mean_entry.get_text_length != 0 and self.dev_entry.get_text_length != 0:
-            try:
-                mean = int(self.mean_entry.get_text())
-                dev = int(self.dev_entry.get_text())
-                if self.score_entry.get_text_length() == 0:
-                    prob = float(self.prob_entry.get_text())
-                    score = scipy.stats.norm.ppf(prob, mean, dev)
-                    self.score_entry.set_text(str(int(round(score))))
-                    self.plot(mean, dev, score, prob)
-                elif self.prob_entry.get_text_length() == 0:
-                    score = int(self.score_entry.get_text())
-                    prob = scipy.stats.norm.cdf(score, mean, dev)
-                    self.prob_entry.set_text(str(round(prob, 6)))
-                    self.plot(mean, dev, score, prob)
-                else:
-                    self.show_error(self, 'Only one out of 4 values must be left empty.')
-                settings = Gio.Settings.new("com.dpsoftware.gaussian")
-                settings.set_int("mean", mean)
-                settings.set_int("dev", dev)
-            except ValueError:
-                self.show_error(self, 'Invalid values entered.')
+        if len(self.mean_entry.get_text()) and len(self.dev_entry.get_text()):
+            mean = int(self.mean_entry.get_text())
+            dev = int(self.dev_entry.get_text())
+            if self.score_entry.get_text_length() == 0:
+                prob = float(self.prob_entry.get_text())
+                score = scipy.stats.norm.ppf(prob, mean, dev)
+                self.score_entry.set_text(str(int(round(score))))
+                self.plot(mean, dev, score, prob)
+            elif self.prob_entry.get_text_length() == 0:
+                score = int(self.score_entry.get_text())
+                prob = scipy.stats.norm.cdf(score, mean, dev)
+                self.prob_entry.set_text(str(round(prob, 6)))
+                self.plot(mean, dev, score, prob)
+            else:
+                self.show_error(self, 'Only one out of 4 values must be left empty.')
+            settings = Gio.Settings.new("com.dpsoftware.gaussian")
+            settings.set_int("mean", mean)
+            settings.set_int("dev", dev)
         else:
-            self.show_error(self, 'Invalid values entered.')
+            self.show_error(self, 'Both the mean and deviation entries must be filled.')
 
     def plot(self, mean, dev, score, prob):
         for _ in range(12):
@@ -182,7 +179,7 @@ class AboutDialog(Gtk.AboutDialog):
     def __init__(self, parent):
         Gtk.AboutDialog.__init__(self)
         self.props.program_name = 'Gaussian'
-        self.props.version = "1.0"
+        self.props.version = "1.1"
         self.props.authors = ['Dimitris Psathas']
         self.props.website_label = 'https://github.com/dimitris47/gaussian'
         self.props.copyright = '2022 Dimitris Psathas'
